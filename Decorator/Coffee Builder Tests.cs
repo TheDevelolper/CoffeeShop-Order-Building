@@ -68,4 +68,41 @@ public sealed class Builder_Decorator_Tests
         Assert.AreEqual("Medium Coffee with Soy Milk", order.Beverages[1].Description);
     }
 
+    [TestMethod]
+    public void Buy_Three_Get_Cheapest_One_Free()
+    {
+        var orderBuilder = new OrderBuilder();
+        IOrder order =
+                orderBuilder
+                .AddBeverage(
+                    new CoffeeBuilder()
+                    .WithSize(BeverageSize.Medium)
+                    .WithMilk(MilkType.Oat) // 1.10m
+                    .Build()
+                    )
+                .AddBeverage(
+                    new CoffeeBuilder()
+                    .WithSize(BeverageSize.Medium)
+                    .WithMilk(MilkType.Oat) // 1.10m
+                    .Build()
+                    )
+                .AddBeverage(
+                    new CoffeeBuilder()
+                    .WithSize(BeverageSize.Medium)
+                    .WithMilk(MilkType.Soy) // 1.0m
+                    .Build()
+                    )
+                .ApplyDeal(Deal.ByOneGetCheapestFree)
+                .Build();
+
+        Assert.IsNotNull(order);
+        Assert.AreEqual(2.20m, order.Cost); // order without deal would be 3.20m
+        Assert.AreEqual(3, order.Beverages.Count);
+
+        // retains the descriptions of the beverages in the correct order by internally cloning the beverages list
+        Assert.AreEqual("Medium Coffee with Oat Milk", order.Beverages[0].Description);
+        Assert.AreEqual("Medium Coffee with Oat Milk", order.Beverages[1].Description);
+        Assert.AreEqual("Medium Coffee with Soy Milk", order.Beverages[2].Description);
+    }
+
 }

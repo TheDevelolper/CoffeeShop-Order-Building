@@ -16,21 +16,30 @@ public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
 
     private decimal GetTotalCost()
     {
-
-        if (_order.Beverages.Count % 2 == 0)
+        if (_order.Beverages.Count < 2)
         {
-            var sortedBeveragesByCost = new List<IBeverage>(_order.Beverages);
-            sortedBeveragesByCost.Sort((x, y) => x.Cost.CompareTo(y.Cost));
-
-            int firstN = (int)Math.Floor((decimal)sortedBeveragesByCost.Count / 2);
-            var result = sortedBeveragesByCost
-                .Take(firstN)
-                .Sum(beverage => beverage.Cost);
-
-            return result;
+            return _order.Cost;
         }
 
-        return _order.Cost;
+        var isEven = _order.Beverages.Count % 2 == 0;
+        var sortedBeveragesByCost = new List<IBeverage>(_order.Beverages);
+        sortedBeveragesByCost.Sort((y, x) => x.Cost.CompareTo(y.Cost));
+
+        int firstN = (int)Math.Floor((decimal)sortedBeveragesByCost.Count / 2);
+       
+        if(isEven == false)
+        {
+            firstN += 1; // If odd, we're not applying the deal to the last beverage.
+        }
+
+        var result = sortedBeveragesByCost
+            .Take(firstN)
+            .Sum(beverage => beverage.Cost);
+
+        return result;
+        
+
+     
     }
 
     public BuyTwoGetCheapestOneFreeOrderDecorator(IOrder order)
