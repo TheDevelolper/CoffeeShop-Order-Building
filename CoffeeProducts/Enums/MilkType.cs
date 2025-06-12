@@ -4,6 +4,5 @@ public enum MilkType
 {
     FullFat,
     Soy,
-    Almond,
     Oat
 }

@@ -9,16 +9,15 @@ public class CoffeeBuilder: ICoffeeBuilder
     IBeverage beverage;
     public CoffeeBuilder()
     {
-        beverage = new SmallCoffee(); // Base beverage cost is 0.10 pence
+        beverage = new BaseCoffee(); // Base beverage cost is 0.10 pence
     }
 
     public ICoffeeBuilder WithMilk(MilkType milkType)
     {
         beverage = milkType switch
         {
-            MilkType.FullFat => beverage, // No change for full-fat milk
+            MilkType.FullFat => throw new NotImplementedException("Full fat milk not implemented yet"), // Full fat milk not implemented yet
             MilkType.Soy => new SoyMilkBeverageDecorator(beverage), // Wrap in SoyMilkDecorator
-            MilkType.Almond => throw new NotImplementedException("Almond milk not implemented yet"),
             MilkType.Oat => new OatMilkBeverageDecorator(beverage), // Wrap in SoyMilkDecorator
             _ => throw new ArgumentOutOfRangeException(nameof(milkType), "Invalid milk type")
         };
@@ -30,7 +29,7 @@ public class CoffeeBuilder: ICoffeeBuilder
     {
         beverage = size switch
         {
-            BeverageSize.Small => beverage, // No change for small size
+            BeverageSize.Small => throw new NotImplementedException("Small size not implemented yet"),
             BeverageSize.Medium => new MediumBeverageDecorator(beverage), // Wrap in MediumBeverage decorator
             BeverageSize.Large => throw new NotImplementedException("Large size not implemented yet"),
             _ => throw new ArgumentOutOfRangeException(nameof(size), "Invalid beverage size")

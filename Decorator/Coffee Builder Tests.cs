@@ -19,6 +19,7 @@ public sealed class Builder_Decorator_Tests
 
         Assert.IsNotNull(beverage);
         Assert.AreEqual(1.0m, beverage.Cost);
+        Assert.AreEqual("Medium Coffee with Soy Milk", beverage.Description);
     }
 
     [TestMethod]
@@ -32,6 +33,7 @@ public sealed class Builder_Decorator_Tests
 
         Assert.IsNotNull(beverage);
         Assert.AreEqual(1.10m, beverage.Cost);
+        Assert.AreEqual("Medium Coffee with Oat Milk", beverage.Description);
     }
 
     [TestMethod]
