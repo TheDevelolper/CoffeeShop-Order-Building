@@ -3,7 +3,7 @@ using Decorator;
 
 namespace CoffeeProducts.Decorators;
 
-public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
+public class BuyTwoGetCheapestOneFreeOrderDecorator : IOrder
 {
     private IOrder _order;
     public decimal Cost => GetTotalCost();
@@ -21,13 +21,13 @@ public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
             return _order.Cost;
         }
 
-        var isEven = _order.Beverages.Count % 2 == 0;
+        var isOdd = _order.Beverages.Count % 2 != 0;
         var sortedBeveragesByCost = new List<IBeverage>(_order.Beverages);
         sortedBeveragesByCost.Sort((y, x) => x.Cost.CompareTo(y.Cost));
 
         int firstN = (int)Math.Floor((decimal)sortedBeveragesByCost.Count / 2);
-       
-        if(isEven == false)
+
+        if (isOdd)
         {
             firstN += 1; // If odd, we're not applying the deal to the last beverage.
         }
@@ -37,13 +37,13 @@ public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
             .Sum(beverage => beverage.Cost);
 
         return result;
-     
+
     }
 
     public BuyTwoGetCheapestOneFreeOrderDecorator(IOrder order)
     {
         order = order ?? throw new ArgumentNullException(nameof(order), "Order cannot be null");
-     
+
         _order = order;
     }
 }
