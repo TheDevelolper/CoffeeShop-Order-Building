@@ -8,7 +8,6 @@ public class OrderBuilder
 {
     private IOrder _order = new Order();
 
-
     public OrderBuilder()
     {
     }
