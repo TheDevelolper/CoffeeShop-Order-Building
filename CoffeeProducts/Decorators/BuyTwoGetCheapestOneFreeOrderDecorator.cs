@@ -3,7 +3,7 @@ using Decorator;
 
 namespace CoffeeProducts.Decorators;
 
-public class BuyTwoGetCheapestOneFreeDecorator: IOrder
+public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
 {
     private IOrder _order;
     public decimal Cost => GetTotalCost();
@@ -31,7 +31,7 @@ public class BuyTwoGetCheapestOneFreeDecorator: IOrder
         return _order.Cost;
     }
 
-    public BuyTwoGetCheapestOneFreeDecorator(IOrder order)
+    public BuyTwoGetCheapestOneFreeOrderDecorator(IOrder order)
     {
         order = order ?? throw new ArgumentNullException(nameof(order), "Order cannot be null");
      

@@ -17,9 +17,9 @@ public class CoffeeBuilder: ICoffeeBuilder
         beverage = milkType switch
         {
             MilkType.FullFat => beverage, // No change for full-fat milk
-            MilkType.Soy => new SoyMilkDecorator(beverage), // Wrap in SoyMilkDecorator
+            MilkType.Soy => new SoyMilkBeverageDecorator(beverage), // Wrap in SoyMilkDecorator
             MilkType.Almond => throw new NotImplementedException("Almond milk not implemented yet"),
-            MilkType.Oat => new OatMilkDecorator(beverage), // Wrap in SoyMilkDecorator
+            MilkType.Oat => new OatMilkBeverageDecorator(beverage), // Wrap in SoyMilkDecorator
             _ => throw new ArgumentOutOfRangeException(nameof(milkType), "Invalid milk type")
         };
 

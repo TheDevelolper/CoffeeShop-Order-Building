@@ -35,7 +35,7 @@ public sealed class Builder_Decorator_Tests
     }
 
     [TestMethod]
-    public void Buy_Two_Get_One_Free()
+    public void Buy_Two_Get_Cheapest_One_Free()
     {
         var orderBuilder = new OrderBuilder();
         IOrder order =

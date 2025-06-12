@@ -23,7 +23,7 @@ public class OrderBuilder
     {
         _order = deal switch
         {
-            Deal.ByOneGetCheapestFree => new BuyTwoGetCheapestOneFreeDecorator(_order),
+            Deal.ByOneGetCheapestFree => new BuyTwoGetCheapestOneFreeOrderDecorator(_order),
             _ => throw new NotImplementedException($"Deal {deal} is not implemented.")
         };
 
