@@ -60,7 +60,7 @@ public sealed class Builder_Decorator_Tests
         Assert.IsNotNull(order);
         // order without deal would be 2.10m
         // with deal, the cheapest one is free, so we only pay for the more expensive one 1.10m
-        Assert.AreEqual(1.0m, order.Cost); 
+        Assert.AreEqual(1.10m, order.Cost); 
         Assert.AreEqual(2, order.Beverages.Count);
 
         // retains the descriptions of the beverages in the correct order by internally cloning the beverages list

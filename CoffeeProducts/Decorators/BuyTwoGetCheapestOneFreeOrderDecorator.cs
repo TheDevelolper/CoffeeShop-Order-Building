@@ -37,8 +37,6 @@ public class BuyTwoGetCheapestOneFreeOrderDecorator: IOrder
             .Sum(beverage => beverage.Cost);
 
         return result;
-        
-
      
     }
 
