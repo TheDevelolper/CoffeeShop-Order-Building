@@ -1,6 +1,6 @@
 ﻿using CoffeeProducts.Products;
 
-namespace Decorator
+namespace CoffeeShopBuilder
 {
     public interface IOrder
     {

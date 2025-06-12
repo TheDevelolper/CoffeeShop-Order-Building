@@ -3,10 +3,10 @@ using CoffeeProducts.Enums;
 using CoffeeProducts.Products;
 using CoffeeProducts.Utilities;
 
-namespace Decorator.Tests;
+namespace CoffeeShopBuilder.Tests;
 
 [TestClass]
-public sealed class Builder_Decorator_Tests
+public sealed class CoffeeShop_Builder_Tests
 {
     [TestMethod]
     public void Calculates_Medium_Coffee_With_Soy_Milk()
